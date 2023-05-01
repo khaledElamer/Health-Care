@@ -1,7 +1,7 @@
 package Healthy.Healthy.app.controller;
 
 
-import Healthy.Healthy.app.Model.User;
+import Healthy.Healthy.app.entity.User;
 import Healthy.Healthy.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

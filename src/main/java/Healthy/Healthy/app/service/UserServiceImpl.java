@@ -1,7 +1,7 @@
 package Healthy.Healthy.app.service;
 
 
-import Healthy.Healthy.app.Model.User;
+import Healthy.Healthy.app.entity.User;
 import Healthy.Healthy.app.exception.ResourceNotFoundException;
 import Healthy.Healthy.app.repository.UserRepository;
 import jakarta.transaction.Transactional;
