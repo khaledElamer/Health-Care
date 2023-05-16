@@ -28,12 +28,12 @@ public class Pharmacy {
     @Column(nullable = false)
     private String phone;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String location;
 
-    @ManyToOne
-    @JoinColumn(name = "hospital_id")
-    private Hospital hospital;
+//    @ManyToOne
+//    @JoinColumn(name = "hospital_id")
+//    private Hospital hospital;
 
     @OneToMany(mappedBy = "pharmacy", cascade = CascadeType.ALL)
     private List<Medication> medications;

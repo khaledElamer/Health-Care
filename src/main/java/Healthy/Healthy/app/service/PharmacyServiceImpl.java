@@ -2,6 +2,8 @@ package Healthy.Healthy.app.service;
 
 import java.util.List;
 import java.util.Optional;
+
+import Healthy.Healthy.app.exception.HospitalNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +13,6 @@ import Healthy.Healthy.app.repository.PharmacyRepository;
 import Healthy.Healthy.app.service.PharmacyService;
 
 @Service
-@Transactional
 public class PharmacyServiceImpl implements PharmacyService {
 
     @Autowired
@@ -25,12 +26,9 @@ public class PharmacyServiceImpl implements PharmacyService {
     @Override
     public Pharmacy getPharmacyById(Long id) {
         Optional<Pharmacy> pharmacy = pharmacyRepository.findById(id);
-        if (pharmacy.isPresent()) {
-            return pharmacy.get();
-        } else {
-            throw new ResourceNotFoundException("Pharmacy", "id", id);
-        }
+        return pharmacy.orElseThrow(() -> new ResourceNotFoundException("Pharmacy", "id", id));
     }
+
 
     @Override
     public Pharmacy createPharmacy(Pharmacy pharmacy) {
@@ -56,7 +54,7 @@ public class PharmacyServiceImpl implements PharmacyService {
             updatedPharmacy.setAddress(pharmacy.getAddress());
             updatedPharmacy.setPhone(pharmacy.getPhone());
             updatedPharmacy.setLocation(pharmacy.getLocation());
-            updatedPharmacy.setHospital(pharmacy.getHospital());
+//            updatedPharmacy.setHospital(pharmacy.getHospital());
             updatedPharmacy.setMedications(pharmacy.getMedications());
             updatedPharmacy.setOrderMedications(pharmacy.getOrderMedications());
             return pharmacyRepository.save(updatedPharmacy);

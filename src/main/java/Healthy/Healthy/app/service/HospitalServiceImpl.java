@@ -48,7 +48,7 @@ public class HospitalServiceImpl implements HospitalService {
         existingHospital.setAvailableSpecialties(hospital.getAvailableSpecialties());
         existingHospital.setLocation(hospital.getLocation());
         existingHospital.setClinics(hospital.getClinics());
-        existingHospital.setPharmacies(hospital.getPharmacies());
+//        existingHospital.setPharmacies(hospital.getPharmacies());
         return hospitalRepository.save(existingHospital);
     }
 }
