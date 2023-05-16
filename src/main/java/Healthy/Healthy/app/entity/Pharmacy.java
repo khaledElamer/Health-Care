@@ -31,9 +31,9 @@ public class Pharmacy {
     @Column(nullable = false)
     private String location;
 
-//    @ManyToOne
-//    @JoinColumn(name = "hospital_id")
-//    private Hospital hospital;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "hospital_id")
+    private Hospital hospital;
 
     @OneToMany(mappedBy = "pharmacy", cascade = CascadeType.ALL)
     private List<Medication> medications;

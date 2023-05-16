@@ -35,7 +35,7 @@ public class Hospital {
     @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
     private List<Clinic> clinics;
 
-//    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
-//    private List<Pharmacy> pharmacies;
+    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
+    private List<Pharmacy> pharmacies;
 
 }

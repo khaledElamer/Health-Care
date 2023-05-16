@@ -54,7 +54,7 @@ public class PharmacyServiceImpl implements PharmacyService {
             updatedPharmacy.setAddress(pharmacy.getAddress());
             updatedPharmacy.setPhone(pharmacy.getPhone());
             updatedPharmacy.setLocation(pharmacy.getLocation());
-//            updatedPharmacy.setHospital(pharmacy.getHospital());
+            updatedPharmacy.setHospital(pharmacy.getHospital());
             updatedPharmacy.setMedications(pharmacy.getMedications());
             updatedPharmacy.setOrderMedications(pharmacy.getOrderMedications());
             return pharmacyRepository.save(updatedPharmacy);
