@@ -1,5 +1,7 @@
 package Healthy.Healthy.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,14 +30,18 @@ public class OrderMedication {
     @Column(nullable = false)
     private Double total;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pharmacy_id", nullable = false)
+    @JoinColumn(name = "pharmacy_id")
     private Pharmacy pharmacy;
-    @ManyToOne
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "medication_id")
     private Medication medication;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Orders orders;
 

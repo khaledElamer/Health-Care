@@ -35,14 +35,18 @@ public class Clinic {
     @Column(name = "schedule")
     private List<String> schedule;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hospital_id")
     private Hospital hospital;
 
-    @OneToMany(mappedBy = "clinic", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "clinic", targetEntity = MedicalInsurance.class)
+    @org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.ALL})
+    @org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)
     private List<MedicalInsurance> medicalInsurances;
 
-    @OneToMany(mappedBy = "clinic", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "clinic", targetEntity = Reservation.class)
+    @org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.ALL})
+    @org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)
     private List<Reservation> reservations;
 
 }

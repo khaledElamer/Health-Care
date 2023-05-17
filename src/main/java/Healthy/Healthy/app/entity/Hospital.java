@@ -1,5 +1,6 @@
 package Healthy.Healthy.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Hospital {
 
     @Id
@@ -27,15 +29,17 @@ public class Hospital {
     @Column(name = "available_specialties")
     private String availableSpecialties;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
 
-
-    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hospital", targetEntity = Clinic.class)
+    @org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.ALL})
+    @org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)
     private List<Clinic> clinics;
 
-    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hospital", targetEntity = Pharmacy.class)
+    @org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.ALL})
+    @org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)
     private List<Pharmacy> pharmacies;
-
 }

@@ -1,5 +1,9 @@
 package Healthy.Healthy.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,14 +36,19 @@ public class Pharmacy {
     private String location;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "hospital_id")
     private Hospital hospital;
 
     @OneToMany(mappedBy = "pharmacy", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JsonBackReference // Add this annotation to avoid the back reference serialization
     private List<Medication> medications;
 
     @OneToMany(mappedBy = "pharmacy", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    @JsonManagedReference // Add this annotation to handle the bidirectional relationship
     private List<OrderMedication> orderMedications = new ArrayList<>();
 
-
+    // Rest of the code
 }

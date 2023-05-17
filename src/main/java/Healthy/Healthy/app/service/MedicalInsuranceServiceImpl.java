@@ -46,7 +46,7 @@ public class MedicalInsuranceServiceImpl implements MedicalInsuranceService {
         existingMedicalInsurance.setInsuranceNumber(medicalInsurance.getInsuranceNumber());
         existingMedicalInsurance.setInsuranceProvider(medicalInsurance.getInsuranceProvider());
         existingMedicalInsurance.setClinic(medicalInsurance.getClinic());
-        existingMedicalInsurance.setOrders(medicalInsurance.getOrders());
+//        existingMedicalInsurance.setOrders(medicalInsurance.getOrders());
         return medicalInsuranceRepository.save(existingMedicalInsurance);
     }
 

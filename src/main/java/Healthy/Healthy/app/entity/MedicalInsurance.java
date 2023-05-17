@@ -25,11 +25,9 @@ public class MedicalInsurance {
     private String insuranceProvider;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clinic_id")
     private Clinic clinic;
 
-    @OneToMany(mappedBy = "medicalInsurance" ,cascade = CascadeType.ALL)
-    private List<Orders> orders;
 
 }

@@ -48,8 +48,8 @@ public class OrderServiceImpl implements OrderService {
         existingOrder.setName(order.getName());
         existingOrder.setDate(order.getDate());
         existingOrder.setTime(order.getTime());
-        existingOrder.setMedicalInsurance(order.getMedicalInsurance());
-        existingOrder.setOrderMedications(order.getOrderMedications());
+//        existingOrder.setMedicalInsurance(order.getMedicalInsurance());
+//        existingOrder.setOrderMedications(order.getOrderMedications());
 
         return orderRepository.save(existingOrder);
     }
