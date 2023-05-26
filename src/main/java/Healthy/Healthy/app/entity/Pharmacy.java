@@ -50,5 +50,4 @@ public class Pharmacy {
     @JsonManagedReference // Add this annotation to handle the bidirectional relationship
     private List<OrderMedication> orderMedications = new ArrayList<>();
 
-    // Rest of the code
 }

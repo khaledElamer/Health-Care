@@ -5,12 +5,11 @@ import Healthy.Healthy.app.service.ClinicService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/clinics")
 public class ClinicController {
 
-    private  ClinicService clinicService;
+    private final ClinicService clinicService;
 
     public ClinicController(ClinicService clinicService) {
         this.clinicService = clinicService;

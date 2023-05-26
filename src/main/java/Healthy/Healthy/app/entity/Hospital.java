@@ -1,5 +1,6 @@
 package Healthy.Healthy.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -33,13 +34,11 @@ public class Hospital {
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
 
-    @OneToMany(mappedBy = "hospital", targetEntity = Clinic.class)
-    @org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.ALL})
-    @org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)
+    @OneToMany(mappedBy = "hospital", targetEntity = Clinic.class, cascade = CascadeType.ALL)
+    @JsonIgnore  // Ignore the clinics property during serialization
     private List<Clinic> clinics;
 
-    @OneToMany(mappedBy = "hospital", targetEntity = Pharmacy.class)
-    @org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.ALL})
-    @org.hibernate.annotations.LazyCollection(org.hibernate.annotations.LazyCollectionOption.TRUE)
+    @OneToMany(mappedBy = "hospital", targetEntity = Pharmacy.class, cascade = CascadeType.ALL)
+    @JsonIgnore  // Ignore the pharmacies property during serialization
     private List<Pharmacy> pharmacies;
 }

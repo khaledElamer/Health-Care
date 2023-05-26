@@ -1,6 +1,7 @@
 package Healthy.Healthy.app.service;
 
 import Healthy.Healthy.app.entity.MedicalInsurance;
+import Healthy.Healthy.app.enums.InsuranceProvider;
 import Healthy.Healthy.app.exception.MedicalInsuranceNotFoundException;
 import Healthy.Healthy.app.repository.MedicalInsuranceRepository;
 import jakarta.transaction.Transactional;
@@ -49,5 +50,11 @@ public class MedicalInsuranceServiceImpl implements MedicalInsuranceService {
 //        existingMedicalInsurance.setOrders(medicalInsurance.getOrders());
         return medicalInsuranceRepository.save(existingMedicalInsurance);
     }
+
+    @Override
+    public InsuranceProvider[] getEnums() {
+        return InsuranceProvider.values();
+    }
+
 
 }

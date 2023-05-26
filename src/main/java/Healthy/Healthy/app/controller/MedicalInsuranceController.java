@@ -1,6 +1,7 @@
 package Healthy.Healthy.app.controller;
 
 import Healthy.Healthy.app.entity.MedicalInsurance;
+import Healthy.Healthy.app.enums.InsuranceProvider;
 import Healthy.Healthy.app.service.MedicalInsuranceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,5 +47,10 @@ public class MedicalInsuranceController {
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         medicalInsuranceService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+    @GetMapping("/enums")
+    public ResponseEntity<InsuranceProvider[]> getEnums() {
+        InsuranceProvider[] insuranceProviders = InsuranceProvider.values();
+        return ResponseEntity.ok(insuranceProviders);
     }
 }
