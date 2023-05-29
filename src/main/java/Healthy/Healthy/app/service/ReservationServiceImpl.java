@@ -1,20 +1,27 @@
 package Healthy.Healthy.app.service;
 
+import Healthy.Healthy.app.entity.Clinic;
 import Healthy.Healthy.app.entity.Reservation;
+import Healthy.Healthy.app.enums.Gender;
 import Healthy.Healthy.app.exception.ResourceNotFoundException;
+import Healthy.Healthy.app.repository.ClinicRepository;
 import Healthy.Healthy.app.repository.ReservationRepository;
-import Healthy.Healthy.app.service.ReservationService;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
 
     private final ReservationRepository reservationRepository;
+    private final ClinicRepository clinicRepository;
 
-    public ReservationServiceImpl(ReservationRepository reservationRepository) {
+
+    public ReservationServiceImpl(ReservationRepository reservationRepository, ClinicRepository clinicRepository) {
         this.reservationRepository = reservationRepository;
+        this.clinicRepository = clinicRepository;
     }
 
     @Override
@@ -53,5 +60,15 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void deleteReservation(Long id) {
         reservationRepository.deleteById(id);
+    }
+    @Override
+    public List<String> getGenderOptions() {
+        return Arrays.stream(Gender.values())
+                .map(Gender::getValue)
+                .collect(Collectors.toList());
+    }
+    @Override
+    public List<Clinic> getAllClinics() {
+        return clinicRepository.findAll();
     }
 }

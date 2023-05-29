@@ -1,5 +1,6 @@
 package Healthy.Healthy.app.entity;
 
+import Healthy.Healthy.app.enums.Gender;
 import Healthy.Healthy.app.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,11 +24,22 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String confirmPassword;
+
+
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role;
+    private String mobileNumber;
+
+    @Column(name = "gender", nullable = false, length = 255)
+    @Enumerated(EnumType.STRING)
+    public Gender gender;
+
+    @Column(nullable = false)
+    private boolean agreePolicy;
+
 
 }

@@ -32,7 +32,7 @@ public class Pharmacy {
     @Column(nullable = false)
     private String phone;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String location;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -42,12 +42,17 @@ public class Pharmacy {
 
     @OneToMany(mappedBy = "pharmacy", cascade = CascadeType.ALL)
     @JsonIgnore
-    @JsonBackReference // Add this annotation to avoid the back reference serialization
+    @JsonBackReference // this annotation to avoid the back reference serialization
     private List<Medication> medications;
 
-    @OneToMany(mappedBy = "pharmacy", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "pharmacy", cascade = CascadeType.ALL)
     @JsonIgnore
-    @JsonManagedReference // Add this annotation to handle the bidirectional relationship
+    @JsonManagedReference //  this annotation to handle the bidirectional relationship
     private List<OrderMedication> orderMedications = new ArrayList<>();
+
+    @OneToMany(mappedBy = "pharmacy", cascade = CascadeType.ALL, targetEntity = Orders.class)
+    @JsonBackReference
+    private List<Orders> orders;
+
 
 }

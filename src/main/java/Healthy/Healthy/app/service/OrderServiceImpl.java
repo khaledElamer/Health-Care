@@ -1,8 +1,10 @@
 package Healthy.Healthy.app.service;
 
 import Healthy.Healthy.app.entity.Orders;
+import Healthy.Healthy.app.entity.Pharmacy;
 import Healthy.Healthy.app.exception.OrderNotFoundException;
 import Healthy.Healthy.app.repository.OrderRepository;
+import Healthy.Healthy.app.repository.PharmacyRepository;
 import jakarta.persistence.criteria.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,9 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
 
     private OrderRepository orderRepository;
+
+    private PharmacyRepository pharmacyRepository;
+
 
     @Autowired
     public OrderServiceImpl(OrderRepository orderRepository) {
@@ -45,12 +50,17 @@ public class OrderServiceImpl implements OrderService {
         Orders existingOrder = orderRepository.findById(id)
                 .orElseThrow(() -> new OrderNotFoundException(id));
 
-        existingOrder.setName(order.getName());
-        existingOrder.setDate(order.getDate());
-        existingOrder.setTime(order.getTime());
-//        existingOrder.setMedicalInsurance(order.getMedicalInsurance());
-//        existingOrder.setOrderMedications(order.getOrderMedications());
+        existingOrder.setDeliveryOption(order.getDeliveryOption());
+        existingOrder.setDosage(order.getDosage());
+        existingOrder.setQuantity(order.getQuantity());
+        existingOrder.setMedicationName(order.getMedicationName());
+        existingOrder.setPharmacy(order.getPharmacy());
 
         return orderRepository.save(existingOrder);
+    }
+    @Override
+    public List<Pharmacy> getAllPharmacies() {
+        return pharmacyRepository.findAll();
+
     }
 }

@@ -24,14 +24,25 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(name = "medication_name")
+    private String medicationName;
 
-    @Column(nullable = false)
-    private Date date;
+    @Column(name = "dosage")
+    private String dosage;
 
-    @Column(nullable = false)
-    private String time;
+    @Column(name = "quantity")
+    private int quantity;
+
+    @Column(name = "delivery_option")
+    private String deliveryOption;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pharmacy_id")
+    @JsonIgnore
+    @JsonManagedReference
+    private Pharmacy pharmacy;
+
+
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JsonIgnore

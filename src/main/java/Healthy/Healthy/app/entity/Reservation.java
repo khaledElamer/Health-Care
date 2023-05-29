@@ -26,7 +26,8 @@ public class Reservation {
     @Column(nullable = false)
     private int age;
 
-    @Column(nullable = false)
+    @Column(name = "gender", nullable = false, length = 255)
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @Column(nullable = false)

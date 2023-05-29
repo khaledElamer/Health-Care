@@ -1,17 +1,18 @@
 package Healthy.Healthy.app.service;
 
-
 import Healthy.Healthy.app.entity.User;
-import Healthy.Healthy.app.exception.ResourceNotFoundException;
+import Healthy.Healthy.app.enums.Gender;
 import Healthy.Healthy.app.repository.UserRepository;
-import jakarta.transaction.Transactional;
+import Healthy.Healthy.app.service.UserService;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
+
     private final UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
@@ -19,29 +20,36 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findById(Long id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
+    public void signIn(User user) {
+        User existingUser = userRepository.findByUsername(user.getUsername());
+        if (existingUser != null && existingUser.getPassword().equals(user.getPassword())) {
+            System.out.println("User signed in successfully.");
+        } else {
+            // Sign in failed
+            throw new IllegalArgumentException("Invalid username or password");
+        }
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
+    public void signUp(User user) {
+        // Handle sign up logic here, e.g., create a new user
+
+        // Example implementation:
+        User existingUser = userRepository.findByUsername(user.getUsername());
+        if (existingUser != null) {
+            // Username already exists
+            throw new IllegalArgumentException("Username already exists");
+        }
+
+        userRepository.save(user);
+        // Perform any necessary actions after sign up
+        System.out.println("User signed up successfully.");
+    }
+    @Override
+    public List<String> getGenderOptions() {
+        return Arrays.stream(Gender.values())
+                .map(Gender::getValue)
+                .collect(Collectors.toList());
     }
 
-    @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
-
-    @Override
-    public User save(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        userRepository.deleteById(id);
-    }
 }
