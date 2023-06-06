@@ -1,8 +1,10 @@
 package Healthy.Healthy.app.service;
 
+import Healthy.Healthy.app.entity.Medication;
 import Healthy.Healthy.app.entity.Orders;
 import Healthy.Healthy.app.entity.Pharmacy;
 import Healthy.Healthy.app.exception.OrderNotFoundException;
+import Healthy.Healthy.app.repository.MedicationRepository;
 import Healthy.Healthy.app.repository.OrderRepository;
 import Healthy.Healthy.app.repository.PharmacyRepository;
 import jakarta.persistence.criteria.Order;
@@ -17,6 +19,9 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
 
     private PharmacyRepository pharmacyRepository;
+
+    private MedicationRepository medicationRepository;
+
 
 
     @Autowired
@@ -61,6 +66,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Pharmacy> getAllPharmacies() {
         return pharmacyRepository.findAll();
+
+    }
+    @Override
+    public List<Medication> getAllMedication() {
+        return medicationRepository.findAll();
 
     }
 }

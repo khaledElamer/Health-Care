@@ -20,8 +20,11 @@ public class Medication {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String manufacturer;
+
+    @Column(nullable = false)
+    private double price;
 
     @Column(nullable = true)
     private String description;

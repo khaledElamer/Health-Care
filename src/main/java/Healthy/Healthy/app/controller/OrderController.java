@@ -1,7 +1,9 @@
     package Healthy.Healthy.app.controller;
 
+    import Healthy.Healthy.app.entity.Medication;
     import Healthy.Healthy.app.entity.Orders;
     import Healthy.Healthy.app.entity.Pharmacy;
+    import Healthy.Healthy.app.service.MedicationService;
     import Healthy.Healthy.app.service.OrderService;
     import Healthy.Healthy.app.service.PharmacyService;
     import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +18,15 @@
 
         private final OrderService orderService;
         private final PharmacyService pharmacyService;
+        private final MedicationService medicationService;
+
 
 
         @Autowired
-        public OrderController(OrderService orderService, PharmacyService pharmacyService) {
+        public OrderController(OrderService orderService, PharmacyService pharmacyService, MedicationService medicationService) {
             this.orderService = orderService;
             this.pharmacyService = pharmacyService;
+            this.medicationService = medicationService;
         }
 
         @GetMapping
@@ -52,6 +57,11 @@
         public ResponseEntity<List<Pharmacy>> getPharmacyOptions() {
             List<Pharmacy> pharmacyList = pharmacyService.getAllPharmacies();
             return ResponseEntity.ok(pharmacyList);
+        }
+        @GetMapping("/medication")
+        public ResponseEntity<List<Medication>> getMedicationOptions() {
+            List<Medication> clinics = medicationService.getAll();
+            return ResponseEntity.ok(clinics);
         }
     }
 
