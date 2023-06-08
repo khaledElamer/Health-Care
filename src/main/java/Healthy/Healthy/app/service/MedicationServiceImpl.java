@@ -44,8 +44,6 @@ public class MedicationServiceImpl implements MedicationService {
         Medication existingMedication = medicationRepository.findById(id)
                 .orElseThrow(() -> new MedicationNotFoundException(id));
         existingMedication.setName(medication.getName());
-        existingMedication.setManufacturer(medication.getManufacturer());
-        existingMedication.setDescription(medication.getDescription());
         existingMedication.setOrderMedications(medication.getOrderMedications());
         existingMedication.setPharmacy(medication.getPharmacy());
         return medicationRepository.save(existingMedication);

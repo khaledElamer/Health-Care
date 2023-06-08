@@ -27,14 +27,14 @@ public class Orders {
     @Column(name = "medication_name")
     private String medicationName;
 
-    @Column(name = "dosage")
-    private String dosage;
+//    @Column(name = "dosage")
+//    private String dosage;
 
     @Column(name = "quantity")
     private int quantity;
 
-    @Column(name = "delivery_option")
-    private String deliveryOption;
+//    @Column(name = "delivery_option")
+//    private String deliveryOption;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pharmacy_id")

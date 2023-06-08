@@ -54,9 +54,6 @@ public class OrderServiceImpl implements OrderService {
     public Orders updateById(Orders order, Long id) {
         Orders existingOrder = orderRepository.findById(id)
                 .orElseThrow(() -> new OrderNotFoundException(id));
-
-        existingOrder.setDeliveryOption(order.getDeliveryOption());
-        existingOrder.setDosage(order.getDosage());
         existingOrder.setQuantity(order.getQuantity());
         existingOrder.setMedicationName(order.getMedicationName());
         existingOrder.setPharmacy(order.getPharmacy());

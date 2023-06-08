@@ -20,14 +20,14 @@ public class Medication {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = true)
-    private String manufacturer;
+//    @Column(nullable = true)
+//    private String manufacturer;
 
     @Column(nullable = false)
     private double price;
 
-    @Column(nullable = true)
-    private String description;
+//    @Column(nullable = true)
+//    private String description;
 
     @OneToMany(mappedBy = "medication", cascade = CascadeType.ALL)
     private List<OrderMedication> orderMedications;
