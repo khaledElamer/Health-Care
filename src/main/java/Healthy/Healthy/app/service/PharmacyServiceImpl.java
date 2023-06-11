@@ -57,6 +57,7 @@ public class PharmacyServiceImpl implements PharmacyService {
             updatedPharmacy.setHospital(pharmacy.getHospital());
             updatedPharmacy.setMedications(pharmacy.getMedications());
             updatedPharmacy.setOrderMedications(pharmacy.getOrderMedications());
+            updatedPharmacy.setPhoneNumber(pharmacy.getPhoneNumber());
             return pharmacyRepository.save(updatedPharmacy);
         } else {
             throw new ResourceNotFoundException("Pharmacy", "id", id);

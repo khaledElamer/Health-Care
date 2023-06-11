@@ -3,10 +3,11 @@
     import com.fasterxml.jackson.annotation.JsonIgnore;
     import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
     import jakarta.persistence.*;
+    import jakarta.validation.constraints.Pattern;
     import lombok.AllArgsConstructor;
     import lombok.Data;
     import lombok.NoArgsConstructor;
-    
+
     import java.util.List;
     
     @Entity
@@ -32,6 +33,10 @@
     
         @Column(name = "specialization")
         private String specialization;
+
+        @Column(name = "phoneNumber")
+        @Pattern(regexp = "01[0-9]{9}", message = "Invalid Egyptian telephone number. Please provide a valid number starting with '01' followed by 9 digits.")
+        private String phoneNumber;
     
 
         @Column(name = "schedule")

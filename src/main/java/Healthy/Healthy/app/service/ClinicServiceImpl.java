@@ -48,6 +48,7 @@ public class ClinicServiceImpl implements ClinicService{
             existingClinic.setHospital(clinic.getHospital());
             existingClinic.setMedicalInsurances(clinic.getMedicalInsurances());
             existingClinic.setReservations(clinic.getReservations());
+            existingClinic.setPhoneNumber(clinic.getPhoneNumber());
             return clinicRepository.save(existingClinic);
         }
 }
