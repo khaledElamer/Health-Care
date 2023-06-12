@@ -35,6 +35,9 @@ public class Hospital {
     @Pattern(regexp = "01[0-9]{9}", message = "Invalid Egyptian telephone number. Please provide a valid number starting with '01' followed by 9 digits.")
     private String phoneNumber;
 
+    @Column(name = "available_services")
+    private String availableServices;
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;

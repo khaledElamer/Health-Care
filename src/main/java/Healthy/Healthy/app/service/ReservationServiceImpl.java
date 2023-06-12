@@ -52,6 +52,7 @@ public class ReservationServiceImpl implements ReservationService {
         existingReservation.setReservationTime(reservation.getReservationTime());
         existingReservation.setMedicalRecordNumber(reservation.getMedicalRecordNumber());
         existingReservation.setClinic(reservation.getClinic());
+        existingReservation.setPhoneNumber(reservation.getPhoneNumber());
         existingReservation.setUser(reservation.getUser());
 
         return reservationRepository.save(existingReservation);
